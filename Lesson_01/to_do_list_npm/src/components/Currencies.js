@@ -11,14 +11,7 @@ function Currencies() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setCurrencies(
-          data.map((currency) => ({
-            id: currency.r030,
-            name: currency.txt,
-            cc: currency.cc,
-            rate: currency.rate,
-          }))
-        );
+        setCurrencies(data);
       });
   }, []);
 
@@ -34,7 +27,7 @@ function Currencies() {
         </thead>
         <tbody>
           {currencies.map((currency) => (
-            <Currency currency={currency} key={currency.id} />
+            <Currency currency={currency} key={currency.r030} />
           ))}
         </tbody>
       </Table>
