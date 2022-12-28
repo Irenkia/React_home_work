@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Country from "./Country";
-import Button from "./Button";
+import { Table, FormControl } from "react-bootstrap";
 
 function Countries() {
   const [countries, setCountries] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     fetch("https://restcountries.com/v2/all")
       .then((res) => res.json())
@@ -22,9 +24,27 @@ function Countries() {
       });
   }, []);
 
+  function searchByCountryName(searchName) {
+    setSearchValue(searchName);
+    const result = countries.filter((country) =>
+      country.name.toLowerCase().includes(searchName)
+    );
+    console.log(result);
+    setFilteredCountries(result);
+  }
+
   return (
     <>
-      <table className="table table-bordered table-striped table-hover">
+      <FormControl
+        className="mb-3"
+        placeholder="Search"
+        aria-label="Search"
+        onKeyUp={(e) =>
+          searchByCountryName(e.currentTarget.value.toLowerCase().trim())
+        }
+      />
+
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Name</th>
@@ -35,12 +55,32 @@ function Countries() {
           </tr>
         </thead>
         <tbody>
-          {countries.map((country) => (
-            <Country key={country.alpha3Code} country={country} countryTitle={country.name}/>
-          ))}
+          {searchValue.length
+            ? filteredCountries.map((country) => (
+                <Country
+                  key={country.alpha3Code}
+                  country={country}
+                  countryTitle={country.name}
+                />
+              ))
+            : countries.map((country) => (
+                <Country
+                  key={country.alpha3Code}
+                  country={country}
+                  countryTitle={country.name}
+                />
+              ))}
+          {/* {(searchValue.length ? filteredCountries : countries).map(
+            (country) => (
+              <Country
+                key={country.alpha3Code}
+                country={country}
+                countryTitle={country.name}
+              />
+            )
+          )} */}
         </tbody>
-      </table>
-      <Button />
+      </Table>
     </>
   );
 }
