@@ -1,23 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from './components/main/Main';
 
 function App() {
+  const taskArr = ["First","Second","Third"];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container p-3 bg-white">
+      <h3 className='mb-3 p-3'>To Do List</h3>
+      <Main taskArr={taskArr}/>
     </div>
   );
 }
