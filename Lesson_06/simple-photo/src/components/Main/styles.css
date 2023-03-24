@@ -1,0 +1,16 @@
+/* .main-content .content .btn{
+    width: 12rem;
+    height: 3.2rem;
+    text-transform:uppercase;
+    background-color: rgba(22, 160, 133, 1) !important;
+    color: white !important;
+} */
+.img-fluid{
+    /* background-size:cover; */
+    /* background-size: 100% 100%; */
+    width: 100%;
+}
+.main-content .content{
+    background-color: gray;
+    opacity: 1;
+}
