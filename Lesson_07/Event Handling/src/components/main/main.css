@@ -1,0 +1,7 @@
+.wrap{
+    display: inline-flex;
+    padding: 2rem;
+    box-shadow: 0 0 20px black;
+    border-radius: .5rem;
+}
+
